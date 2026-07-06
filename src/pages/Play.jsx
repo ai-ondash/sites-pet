@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import Stage from '../components/Stage.jsx'
-import Character from '../components/Character.jsx'
+import Robot from '../components/Robot.jsx'
 import Dog from '../components/Dog.jsx'
 import Cat from '../components/Cat.jsx'
 import Hearts from '../components/Hearts.jsx'
@@ -48,7 +48,7 @@ export default function Play() {
     <div className="play">
       <Stage camera={{ position: [4, 3, 7], fov: 50 }} target={[0, 1, 0]} theme={theme}>
         {character.kind === 'robot' && (
-          <Character emote={emote} onEmoteEnd={() => setEmote(null)} onClick={pet} />
+          <Robot emote={emote} onEmoteEnd={() => setEmote(null)} onClick={pet} />
         )}
         {character.kind === 'creature' && Creature && (
           <Creature

@@ -2,7 +2,7 @@ import { Suspense, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { useFrame } from '@react-three/fiber'
 import { ContactShadows } from '@react-three/drei'
-import RobotModel from './RobotModel.jsx'
+import Robot from './Robot.jsx'
 import Dog from './Dog.jsx'
 import Cat from './Cat.jsx'
 
@@ -33,7 +33,7 @@ export default function CharacterPreview({ id }) {
         <directionalLight castShadow position={[4, 6, 3]} intensity={1.8} />
 
         <Turntable speed={0.6}>
-          {id === 'robot' && <RobotModel clip="Idle" />}
+          {id === 'robot' && <Robot interactive={false} />}
           {id === 'dog' && <Dog expression="happy" pose="idle" position={[0, 0, 0]} />}
           {id === 'cat' && <Cat expression="happy" pose="idle" position={[0, 0, 0]} />}
         </Turntable>
