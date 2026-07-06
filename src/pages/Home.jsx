@@ -26,9 +26,17 @@ export default function Home() {
             style={{ '--accent': c.accent }}
           >
             <div className="petcard__stage">
-              <Suspense fallback={<div className="petcard__loading">불러오는 중…</div>}>
-                <CharacterPreview id={c.id} />
-              </Suspense>
+              {c.kind === 'photo' ? (
+                <img
+                  className="petcard__photo"
+                  src={import.meta.env.BASE_URL + c.assetBase + (c.states.find((s) => s.key === c.defaultState) || c.states[0]).src}
+                  alt={c.name}
+                />
+              ) : (
+                <Suspense fallback={<div className="petcard__loading">불러오는 중…</div>}>
+                  <CharacterPreview id={c.id} />
+                </Suspense>
+              )}
             </div>
             <div className="petcard__body">
               <div className="petcard__name">

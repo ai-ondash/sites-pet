@@ -66,6 +66,17 @@ src/
   hooks/useKeyboard.js        ← 키보드 입력
 ```
 
+## 포토펫 (AI 생성 실사풍 캐릭터)
+
+`kind: 'photo'` 캐릭터는 3D가 아니라 **AI로 생성한 실사풍 이미지/영상**을 상태별로
+크로스페이드하며 숨쉬기·시선 패럴랙스·클릭 하트로 살아있는 초상화처럼 보여줍니다.
+아티스트 없이 만들 수 있으며, 만드는 법(폴더 규칙·생성 툴·프롬프트)은
+👉 **[docs/photopet-pipeline.md](docs/photopet-pipeline.md)** 참고.
+
+- 에셋: `public/photopets/<id>/<state>.(webp|jpg|mp4|webm)`
+- 등록: `src/data/characters.js` 의 `kind:'photo'` 항목(`assetBase`, `states`)
+- 현재 `아리(aipup)` 는 **플레이스홀더 SVG** 로 동작 데모 중 — AI 에셋으로 교체하면 실사풍이 됩니다.
+
 ## 새 캐릭터 추가하기
 
 모두 코드형이라 에셋 없이 캐릭터를 늘릴 수 있습니다.

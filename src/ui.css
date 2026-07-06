@@ -284,6 +284,99 @@
 }
 .dogpanel--center .dogpanel__row { justify-content: center; }
 
+/* ============ 포토펫 (미디어 기반 실사풍) ============ */
+.petcard__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.photopet {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #0b0e18;
+}
+.photopet__ambient {
+  position: absolute;
+  inset: -8%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(46px) saturate(1.2) brightness(0.7);
+  transform: scale(1.15);
+  opacity: 0.7;
+}
+.photopet__frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  height: min(74vh, 88vw * 11 / 9);
+  aspect-ratio: 9 / 11;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  cursor: pointer;
+  transition: transform 0.25s ease-out;
+  will-change: transform;
+}
+.photopet__stack { position: absolute; inset: 0; }
+.photopet__layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.photopet__layer.is-active { opacity: 1; }
+.photopet__media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.photopet__hearts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.photopet__heart {
+  position: absolute;
+  bottom: 26%;
+  font-size: 30px;
+  color: #ff4d79;
+  animation: heartfloat 1.1s ease-out forwards;
+  filter: drop-shadow(0 2px 5px rgba(255, 77, 121, 0.5));
+}
+.photopet__hint {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #fff;
+  opacity: 0.85;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 5px 12px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03) translateY(-0.6%); }
+}
+@keyframes heartfloat {
+  from { opacity: 1; transform: translate(0, 0) scale(0.5); }
+  30% { opacity: 1; }
+  to { opacity: 0; transform: translate(var(--dx), -170px) scale(1.25); }
+}
+
 .loader {
   position: fixed;
   inset: 0;

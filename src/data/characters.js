@@ -67,6 +67,27 @@ export const CHARACTERS = [
       { key: 'purr', label: '💗 갸르릉' },
     ],
   },
+  {
+    // 미디어 기반(AI 생성 이미지/영상) '포토펫' — 실사풍
+    id: 'aipup',
+    kind: 'photo',
+    name: '아리',
+    species: 'AI 강아지',
+    emoji: '🐕',
+    tagline: 'AI로 생성한 실사풍 강아지',
+    description: '사실적인 AI 이미지/영상을 상태별로 크로스페이드하며 살아있는 초상화처럼 보여줘요.',
+    accent: '#d8a76a',
+    abilities: ['실사풍 이미지', '상태 전환', '쓰다듬기 반응'],
+    assetBase: 'photopets/aipup/',
+    defaultState: 'idle',
+    // src 는 assetBase 기준 상대경로. type: 'image'(png/jpg/webp/svg) 또는 'video'(mp4/webm)
+    states: [
+      { key: 'idle', label: '🙂 평온', type: 'image', src: 'idle.svg' },
+      { key: 'happy', label: '😄 행복', type: 'image', src: 'happy.svg' },
+      { key: 'sleepy', label: '😴 졸림', type: 'image', src: 'sleepy.svg' },
+      { key: 'play', label: '🎾 신남', type: 'image', src: 'play.svg' },
+    ],
+  },
 ]
 
 export const getCharacter = (id) => CHARACTERS.find((c) => c.id === id)

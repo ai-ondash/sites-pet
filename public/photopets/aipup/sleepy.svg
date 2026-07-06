@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" width="900" height="1100">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="40%" r="78%">
+      <stop offset="0%" stop-color="#cdd6f0"/>
+      <stop offset="55%" stop-color="#8f9bc4"/>
+      <stop offset="100%" stop-color="#4a4f78"/>
+    </radialGradient>
+    <radialGradient id="v" cx="50%" cy="45%" r="70%">
+      <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.45"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="1100" fill="url(#g)"/>
+  <text x="450" y="560" font-size="360" text-anchor="middle" dominant-baseline="central">🐕</text>
+  <text x="640" y="360" font-size="110" text-anchor="middle" dominant-baseline="central">💤</text>
+  <rect width="900" height="1100" fill="url(#v)"/>
+  <text x="450" y="150" font-size="30" fill="#fff" fill-opacity="0.6" text-anchor="middle" font-family="sans-serif">AI 생성 이미지 자리 · 교체용</text>
+  <text x="450" y="960" font-size="66" fill="#fff" text-anchor="middle" font-family="sans-serif" font-weight="700">졸림 · sleepy</text>
+</svg>
