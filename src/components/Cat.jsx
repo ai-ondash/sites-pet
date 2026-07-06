@@ -254,20 +254,23 @@ export default function Cat({
             { ref: eyeR, x: 0.17, bref: browR },
           ].map((e, i) => (
             <group key={i} position={[e.x, 0.08, 0.32]}>
-              <mesh ref={e.ref}>
-                <sphereGeometry args={[0.1, 16, 14]} />
-                <meshStandardMaterial color={EYE} roughness={0.25} />
-              </mesh>
-              {/* 세로 동공 */}
-              <mesh position={[0, 0, 0.07]}>
-                <boxGeometry args={[0.028, 0.12, 0.02]} />
-                <meshStandardMaterial color={PUPIL} roughness={0.3} />
-              </mesh>
-              {/* 하이라이트 */}
-              <mesh position={[0.035, 0.04, 0.09]}>
-                <sphereGeometry args={[0.025, 10, 8]} />
-                <meshStandardMaterial color="#ffffff" emissive="#ffffff" emissiveIntensity={0.4} />
-              </mesh>
+              {/* 눈알+동공+하이라이트를 한 그룹으로 묶어 openness 스케일을 함께 받게 함 */}
+              <group ref={e.ref}>
+                <mesh>
+                  <sphereGeometry args={[0.1, 16, 14]} />
+                  <meshStandardMaterial color={EYE} roughness={0.25} />
+                </mesh>
+                {/* 세로 동공 */}
+                <mesh position={[0, 0, 0.088]}>
+                  <boxGeometry args={[0.028, 0.11, 0.02]} />
+                  <meshStandardMaterial color={PUPIL} roughness={0.3} />
+                </mesh>
+                {/* 하이라이트 (바깥쪽 위, 좌우 대칭) */}
+                <mesh position={[e.x < 0 ? -0.038 : 0.038, 0.045, 0.095]}>
+                  <sphereGeometry args={[0.025, 10, 8]} />
+                  <meshStandardMaterial color="#ffffff" emissive="#ffffff" emissiveIntensity={0.4} />
+                </mesh>
+              </group>
               <mesh ref={e.bref} position={[0, 0.15, 0.02]}>
                 <boxGeometry args={[0.13, 0.028, 0.03]} />
                 <meshStandardMaterial color={FUR_DARK} roughness={0.8} />
