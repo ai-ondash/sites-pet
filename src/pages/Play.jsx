@@ -3,15 +3,11 @@ import { useParams, Link, Navigate } from 'react-router-dom'
 import Stage from '../components/Stage.jsx'
 import Character from '../components/Character.jsx'
 import Dog from '../components/Dog.jsx'
+import Cat from '../components/Cat.jsx'
 import { getCharacter } from '../data/characters.js'
 
-const DOG_EXPRESSIONS = [
-  { key: 'happy', label: '😄 행복' },
-  { key: 'sad', label: '😢 슬픔' },
-  { key: 'surprised', label: '😮 놀람' },
-  { key: 'sleepy', label: '😴 졸림' },
-  { key: 'love', label: '🥰 사랑' },
-]
+// creature id → 3D 컴포넌트
+const CREATURES = { dog: Dog, cat: Cat }
 
 export default function Play() {
   const { id } = useParams()
@@ -19,21 +15,23 @@ export default function Play() {
 
   // 로봇 상태
   const [emote, setEmote] = useState(null)
-  // 강아지 상태
+  // creature 상태
   const [expression, setExpression] = useState('happy')
   const [pose, setPose] = useState('idle')
   const [trick, setTrick] = useState(null)
 
   if (!character) return <Navigate to="/" replace />
 
+  const Creature = CREATURES[id]
+
   return (
     <div className="play">
       <Stage camera={{ position: [4, 3, 7], fov: 50 }} target={[0, 1, 0]}>
-        {id === 'robot' && (
+        {character.kind === 'robot' && (
           <Character emote={emote} onEmoteEnd={() => setEmote(null)} />
         )}
-        {id === 'dog' && (
-          <Dog
+        {character.kind === 'creature' && Creature && (
+          <Creature
             position={[0, 0, 0]}
             expression={expression}
             pose={pose}
@@ -53,7 +51,7 @@ export default function Play() {
       </div>
 
       {/* 로봇 컨트롤 */}
-      {id === 'robot' && (
+      {character.kind === 'robot' && (
         <div className="hud">
           <div className="hud__hint">
             이동: <b>W A S D</b> / 방향키 &nbsp;·&nbsp; 달리기: <b>Shift</b> &nbsp;·&nbsp; 시점: 드래그
@@ -67,12 +65,12 @@ export default function Play() {
         </div>
       )}
 
-      {/* 강아지 컨트롤 */}
-      {id === 'dog' && (
+      {/* creature 컨트롤 (강아지·고양이 공용, 설정 기반) */}
+      {character.kind === 'creature' && (
         <div className="dogpanel dogpanel--center">
-          <div className="dogpanel__label">🐶 표정</div>
+          <div className="dogpanel__label">{character.emoji} 표정</div>
           <div className="dogpanel__row">
-            {DOG_EXPRESSIONS.map((e) => (
+            {character.expressions.map((e) => (
               <button
                 key={e.key}
                 className={expression === e.key ? 'is-active' : ''}
@@ -84,11 +82,20 @@ export default function Play() {
           </div>
           <div className="dogpanel__label">🦴 액션</div>
           <div className="dogpanel__row">
-            <button className={pose === 'idle' ? 'is-active' : ''} onClick={() => setPose('idle')}>🧍 대기</button>
-            <button className={pose === 'walk' ? 'is-active' : ''} onClick={() => setPose('walk')}>🚶 걷기</button>
-            <button className={pose === 'sit' ? 'is-active' : ''} onClick={() => setPose('sit')}>🐕‍🦺 앉아</button>
-            <button onClick={() => setTrick('jump')}>🦘 점프</button>
-            <button onClick={() => setTrick('spin')}>🌀 빙글</button>
+            {character.poses.map((p) => (
+              <button
+                key={p.key}
+                className={pose === p.key ? 'is-active' : ''}
+                onClick={() => setPose(p.key)}
+              >
+                {p.label}
+              </button>
+            ))}
+            {character.tricks.map((tk) => (
+              <button key={tk.key} onClick={() => setTrick(tk.key)}>
+                {tk.label}
+              </button>
+            ))}
           </div>
         </div>
       )}

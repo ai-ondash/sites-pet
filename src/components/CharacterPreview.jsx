@@ -4,6 +4,7 @@ import { useFrame } from '@react-three/fiber'
 import { ContactShadows } from '@react-three/drei'
 import RobotModel from './RobotModel.jsx'
 import Dog from './Dog.jsx'
+import Cat from './Cat.jsx'
 
 function Turntable({ speed = 0.5, children }) {
   const ref = useRef()
@@ -34,6 +35,7 @@ export default function CharacterPreview({ id }) {
         <Turntable speed={0.6}>
           {id === 'robot' && <RobotModel clip="Idle" />}
           {id === 'dog' && <Dog expression="happy" pose="idle" position={[0, 0, 0]} />}
+          {id === 'cat' && <Cat expression="happy" pose="idle" position={[0, 0, 0]} />}
         </Turntable>
 
         <ContactShadows position={[0, 0.01, 0]} opacity={0.35} scale={6} blur={2.5} far={4} />
