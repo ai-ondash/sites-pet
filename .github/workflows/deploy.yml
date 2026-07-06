@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - claude/3d-backgrounds-character-animation-0fop93
+      - main
   workflow_dispatch:
 
 # GITHUB_TOKEN 이 Pages 배포 권한을 갖도록 설정
