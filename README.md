@@ -11,6 +11,20 @@ npm run dev
 
 브라우저에서 http://localhost:5173 접속.
 
+## 페이지 구조 (라우팅)
+
+정적 호스팅(GitHub Pages)에서 새로고침 404가 안 나도록 **HashRouter**를 사용합니다.
+
+| 경로 | 설명 |
+|------|------|
+| `#/` | 홈 — 애완 캐릭터 소개 갤러리. 각 카드에 회전하는 3D 미리보기. |
+| `#/play/robot` | 로비(로봇)와 노는 페이지 |
+| `#/play/dog` | 몽이(강아지)와 노는 페이지 |
+
+카드를 누르면 해당 캐릭터 플레이 페이지로 이동하고, 좌상단 **← 목록**으로 돌아옵니다.
+새 캐릭터는 `src/data/characters.js`에 항목을 추가하고 `Play.jsx`/`CharacterPreview.jsx`에
+`id` 분기를 더하면 됩니다.
+
 ## 조작
 
 ### 로봇 캐릭터
@@ -29,12 +43,18 @@ npm run dev
 ## 구조
 
 ```
-public/models/character.glb   ← 캐릭터 3D 에셋 (애니메이션 13종 포함)
+public/models/character.glb   ← 로봇 3D 에셋 (애니메이션 13종 포함)
 src/
-  App.jsx                     ← Canvas + 2D UI 오버레이
+  App.jsx                     ← 라우터 (HashRouter: 홈 / 플레이)
+  data/characters.js          ← 캐릭터 레지스트리(메타데이터)
+  pages/
+    Home.jsx                  ← 소개 갤러리
+    Play.jsx                  ← 캐릭터별 플레이 화면 + 컨트롤
   components/
-    Experience.jsx            ← 3D 씬 (배경/조명/지형/캐릭터)
-    Character.jsx             ← 로봇 캐릭터 로드 + 이동/회전 + 애니메이션 상태머신
+    Stage.jsx                 ← 플레이용 공용 3D 무대(배경/조명/지형/카메라)
+    CharacterPreview.jsx      ← 갤러리 카드용 회전 미리보기
+    Character.jsx             ← 로봇 (로드 + 이동/회전 + 애니메이션 상태머신)
+    RobotModel.jsx            ← 로봇 표시용 경량 모델(미리보기/소개용)
     Dog.jsx                   ← 강아지 (프리미티브 절차적 제작 + 표정/액션 애니메이션)
     Ground.jsx                ← 지면
     Loader.jsx                ← 로딩 진행률
