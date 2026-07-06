@@ -1,34 +1,54 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import Stage from '../components/Stage.jsx'
 import Character from '../components/Character.jsx'
 import Dog from '../components/Dog.jsx'
 import Cat from '../components/Cat.jsx'
+import Hearts from '../components/Hearts.jsx'
 import { getCharacter } from '../data/characters.js'
 
-// creature id → 3D 컴포넌트
 const CREATURES = { dog: Dog, cat: Cat }
+
+const THEME_BUTTONS = [
+  { key: 'day', label: '☀️ 낮' },
+  { key: 'sunset', label: '🌇 노을' },
+  { key: 'night', label: '🌙 밤' },
+]
 
 export default function Play() {
   const { id } = useParams()
   const character = getCharacter(id)
 
-  // 로봇 상태
   const [emote, setEmote] = useState(null)
-  // creature 상태
   const [expression, setExpression] = useState('happy')
   const [pose, setPose] = useState('idle')
   const [trick, setTrick] = useState(null)
+  const [theme, setTheme] = useState('day')
+  const [petPulse, setPetPulse] = useState(0)
+  const revertTimer = useRef(null)
 
   if (!character) return <Navigate to="/" replace />
 
   const Creature = CREATURES[id]
 
+  // 캐릭터를 클릭(쓰다듬기)하면 반응 + 하트
+  const pet = () => {
+    setPetPulse((n) => n + 1)
+    if (character.kind === 'robot') {
+      setEmote('Yes')
+    } else {
+      setTrick('jump')
+      setExpression('love')
+      clearTimeout(revertTimer.current)
+      revertTimer.current = setTimeout(() => setExpression('happy'), 1500)
+    }
+  }
+
   return (
     <div className="play">
-      <Stage camera={{ position: [4, 3, 7], fov: 50 }} target={[0, 1, 0]}>
+      <Stage camera={{ position: [4, 3, 7], fov: 50 }} target={[0, 1, 0]} theme={theme}>
         {character.kind === 'robot' && (
-          <Character emote={emote} onEmoteEnd={() => setEmote(null)} />
+          <Character emote={emote} onEmoteEnd={() => setEmote(null)} onClick={pet} />
         )}
         {character.kind === 'creature' && Creature && (
           <Creature
@@ -37,8 +57,10 @@ export default function Play() {
             pose={pose}
             trick={trick}
             onTrickDone={() => setTrick(null)}
+            onClick={pet}
           />
         )}
+        <Hearts trigger={petPulse} origin={[0, 1.5, 0]} />
       </Stage>
 
       {/* 상단 바 */}
@@ -48,7 +70,21 @@ export default function Play() {
           <span>{character.emoji}</span> {character.name}
           <span className="play__species">· {character.species}</span>
         </div>
+        <div className="play__themes">
+          {THEME_BUTTONS.map((tb) => (
+            <button
+              key={tb.key}
+              className={theme === tb.key ? 'is-active' : ''}
+              onClick={() => setTheme(tb.key)}
+            >
+              {tb.label}
+            </button>
+          ))}
+        </div>
       </div>
+
+      {/* 쓰다듬기 안내 */}
+      <div className="play__pethint">🖐️ 캐릭터를 클릭하면 쓰다듬을 수 있어요</div>
 
       {/* 로봇 컨트롤 */}
       {character.kind === 'robot' && (
@@ -65,7 +101,7 @@ export default function Play() {
         </div>
       )}
 
-      {/* creature 컨트롤 (강아지·고양이 공용, 설정 기반) */}
+      {/* creature 컨트롤 (강아지·고양이 공용) */}
       {character.kind === 'creature' && (
         <div className="dogpanel dogpanel--center">
           <div className="dogpanel__label">{character.emoji} 표정</div>

@@ -146,6 +146,44 @@
 }
 .play__species { font-size: 14px; font-weight: 600; opacity: 0.75; margin-left: 4px; }
 
+.play__themes {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  pointer-events: auto;
+}
+.play__themes button {
+  border: none;
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a2340;
+  background: rgba(255, 255, 255, 0.82);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: transform 0.1s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+.play__themes button:hover { background: #fff; transform: translateY(-1px); }
+.play__themes button.is-active {
+  background: #ffb454;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7);
+}
+
+.play__pethint {
+  position: fixed;
+  top: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  font-size: 12px;
+  color: #fff;
+  opacity: 0.75;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  user-select: none;
+}
+
 .hud {
   position: fixed;
   left: 16px;

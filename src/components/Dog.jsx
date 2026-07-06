@@ -38,6 +38,7 @@ export default function Dog({
   trick = null,
   onTrickDone,
   position = [0, 0, 0],
+  onClick,
 }) {
   // 애니메이션 대상 refs
   const root = useRef()        // bob / jump / spin 적용되는 내부 그룹
@@ -187,7 +188,7 @@ export default function Dog({
   })
 
   return (
-    <group position={position}>
+    <group position={position} onClick={onClick} onPointerDown={onClick}>
       <group ref={root}>
         {/* ===== 몸통 ===== */}
         <mesh castShadow position={[0, 0.62, 0]} scale={[0.62, 0.5, 0.82]}>
