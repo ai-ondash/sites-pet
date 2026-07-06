@@ -9,9 +9,12 @@ const RUN_SPEED = 5.0
 const TURN_SPEED = 10
 const FADE = 0.25
 
+// base 경로(dev='/', Pages='/sites-pet/')를 붙여야 배포 환경에서도 로드됨
+const MODEL_URL = import.meta.env.BASE_URL + 'models/character.glb'
+
 export default function Character({ emote, onEmoteEnd }) {
   const group = useRef()
-  const { scene, animations } = useGLTF('/models/character.glb')
+  const { scene, animations } = useGLTF(MODEL_URL)
   const { actions, mixer } = useAnimations(animations, group)
   const keys = useKeyboard()
   const { controls } = useThree()
@@ -119,4 +122,4 @@ export default function Character({ emote, onEmoteEnd }) {
   return <primitive ref={group} object={scene} scale={0.35} />
 }
 
-useGLTF.preload('/models/character.glb')
+useGLTF.preload(MODEL_URL)

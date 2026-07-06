@@ -57,6 +57,24 @@ src/
 - `<fog />` : 안개 색/거리
 - 지형을 `.glb` 모델로 바꾸려면 `Ground.jsx` 를 `useGLTF` 로딩으로 교체
 
+## 배포 (GitHub Pages)
+
+`.github/workflows/deploy.yml` 이 포함되어 있어, 이 브랜치에 push 하면 자동으로
+빌드 후 GitHub Pages 에 배포됩니다.
+
+**최초 1회 설정** (저장소 소유자가 해야 함):
+
+1. GitHub 저장소 → **Settings → Pages** 이동
+2. **Build and deployment → Source** 를 **`GitHub Actions`** 로 선택
+3. 저장 후, 다음 push(또는 Actions 탭에서 `Deploy to GitHub Pages` 수동 실행)부터 배포됨
+
+배포 주소: **https://ai-ondash.github.io/sites-pet/**
+
+> `vite.config.js` 의 `base: '/sites-pet/'` 는 프로젝트 페이지 경로에 맞춘 값입니다.
+> 저장소 이름이 바뀌면 이 값과 `deploy.yml` 의 브랜치명도 함께 수정하세요.
+> 런타임에서 `.glb` 등 정적 파일을 불러올 땐 반드시 `import.meta.env.BASE_URL` 을
+> 앞에 붙여야 합니다 (하드코딩된 `/models/...` 경로는 배포 시 404).
+
 ## 에셋 라이선스
 
 샘플 캐릭터 `RobotExpressive.glb` 는 three.js 예제 에셋(CC-BY, by Tomás Laulhé / Don McCurdy)입니다.
