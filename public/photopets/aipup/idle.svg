@@ -9,9 +9,16 @@
       <stop offset="60%" stop-color="#000" stop-opacity="0"/>
       <stop offset="100%" stop-color="#000" stop-opacity="0.35"/>
     </radialGradient>
+    <style>
+      .pet { transform-box: fill-box; transform-origin: center; animation: idleBreathe 3.4s ease-in-out infinite; }
+      @keyframes idleBreathe {
+        0%,100% { transform: translateY(0) rotate(-2deg) scale(1); }
+        50%     { transform: translateY(-10px) rotate(2deg) scale(1.05); }
+      }
+    </style>
   </defs>
   <rect width="900" height="1100" fill="url(#g)"/>
-  <text x="450" y="560" font-size="360" text-anchor="middle" dominant-baseline="central">🐕</text>
+  <text class="pet" x="450" y="560" font-size="360" text-anchor="middle" dominant-baseline="central">🐕</text>
   <rect width="900" height="1100" fill="url(#v)"/>
   <text x="450" y="150" font-size="30" fill="#fff" fill-opacity="0.65" text-anchor="middle" font-family="sans-serif">AI 생성 이미지 자리 · 교체용</text>
   <text x="450" y="960" font-size="66" fill="#fff" text-anchor="middle" font-family="sans-serif" font-weight="700">평온 · idle</text>

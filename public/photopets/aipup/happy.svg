@@ -9,10 +9,20 @@
       <stop offset="60%" stop-color="#000" stop-opacity="0"/>
       <stop offset="100%" stop-color="#000" stop-opacity="0.32"/>
     </radialGradient>
+    <style>
+      .pet { transform-box: fill-box; transform-origin: center bottom; animation: hop 0.62s ease-in-out infinite; }
+      @keyframes hop {
+        0%,100% { transform: translateY(0) rotate(-6deg) scale(1,1); }
+        30%     { transform: translateY(-46px) rotate(0deg) scale(0.98,1.03); }
+        60%     { transform: translateY(0) rotate(6deg) scale(1.02,0.98); }
+      }
+      .em { transform-box: fill-box; transform-origin: center; animation: emBob 0.8s ease-in-out infinite; }
+      @keyframes emBob { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-16px) rotate(12deg)} }
+    </style>
   </defs>
   <rect width="900" height="1100" fill="url(#g)"/>
-  <text x="450" y="560" font-size="360" text-anchor="middle" dominant-baseline="central">🐶</text>
-  <text x="640" y="380" font-size="120" text-anchor="middle" dominant-baseline="central">😄</text>
+  <text class="pet" x="450" y="560" font-size="360" text-anchor="middle" dominant-baseline="central">🐶</text>
+  <text class="em" x="640" y="380" font-size="120" text-anchor="middle" dominant-baseline="central">😄</text>
   <rect width="900" height="1100" fill="url(#v)"/>
   <text x="450" y="150" font-size="30" fill="#fff" fill-opacity="0.7" text-anchor="middle" font-family="sans-serif">AI 생성 이미지 자리 · 교체용</text>
   <text x="450" y="960" font-size="66" fill="#fff" text-anchor="middle" font-family="sans-serif" font-weight="700">행복 · happy</text>

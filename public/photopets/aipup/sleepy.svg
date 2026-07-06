@@ -9,10 +9,25 @@
       <stop offset="55%" stop-color="#000" stop-opacity="0"/>
       <stop offset="100%" stop-color="#000" stop-opacity="0.45"/>
     </radialGradient>
+    <style>
+      .pet { transform-box: fill-box; transform-origin: center; animation: sleepBreathe 4.6s ease-in-out infinite; }
+      @keyframes sleepBreathe {
+        0%,100% { transform: translateY(0) scale(1); }
+        50%     { transform: translateY(6px) scale(1.035); }
+      }
+      .z { transform-box: fill-box; transform-origin: center; opacity: 0; animation: zfloat 2.8s ease-in-out infinite; }
+      .z2 { animation-delay: 1.4s; }
+      @keyframes zfloat {
+        0%   { transform: translate(0,0) scale(0.7); opacity: 0; }
+        25%  { opacity: 0.95; }
+        100% { transform: translate(40px,-150px) scale(1.2); opacity: 0; }
+      }
+    </style>
   </defs>
   <rect width="900" height="1100" fill="url(#g)"/>
-  <text x="450" y="560" font-size="360" text-anchor="middle" dominant-baseline="central">🐕</text>
-  <text x="640" y="360" font-size="110" text-anchor="middle" dominant-baseline="central">💤</text>
+  <text class="pet" x="450" y="560" font-size="360" text-anchor="middle" dominant-baseline="central">🐕</text>
+  <text class="z" x="640" y="360" font-size="90" text-anchor="middle" dominant-baseline="central">💤</text>
+  <text class="z z2" x="640" y="360" font-size="70" text-anchor="middle" dominant-baseline="central">💤</text>
   <rect width="900" height="1100" fill="url(#v)"/>
   <text x="450" y="150" font-size="30" fill="#fff" fill-opacity="0.6" text-anchor="middle" font-family="sans-serif">AI 생성 이미지 자리 · 교체용</text>
   <text x="450" y="960" font-size="66" fill="#fff" text-anchor="middle" font-family="sans-serif" font-weight="700">졸림 · sleepy</text>

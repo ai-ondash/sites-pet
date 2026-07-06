@@ -75,7 +75,9 @@ src/
 
 - 에셋: `public/photopets/<id>/<state>.(webp|jpg|mp4|webm)`
 - 등록: `src/data/characters.js` 의 `kind:'photo'` 항목(`assetBase`, `states`)
-- 현재 `아리(aipup)` 는 **플레이스홀더 SVG** 로 동작 데모 중 — AI 에셋으로 교체하면 실사풍이 됩니다.
+- 현재 `아리(aipup)` 는 **움직이는 플레이스홀더**(애니메이션 SVG 4종 + 샘플 `wag.webm` 영상)로
+  동작을 시연 중입니다. AI 이미지/영상으로 교체하면 실사풍이 됩니다.
+  (`type:'image'` 는 애니메이션 SVG, `type:'video'` 는 실제 webm 재생 경로를 보여줍니다.)
 
 ## 새 캐릭터 추가하기
 

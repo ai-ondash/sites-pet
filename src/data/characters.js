@@ -86,6 +86,8 @@ export const CHARACTERS = [
       { key: 'happy', label: '😄 행복', type: 'image', src: 'happy.svg' },
       { key: 'sleepy', label: '😴 졸림', type: 'image', src: 'sleepy.svg' },
       { key: 'play', label: '🎾 신남', type: 'image', src: 'play.svg' },
+      // 실제 동작 영상(webm) — type:'video' 경로 시연
+      { key: 'wag', label: '🎬 영상', type: 'video', src: 'wag.webm' },
     ],
   },
 ]
